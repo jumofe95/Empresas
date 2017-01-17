@@ -1,0 +1,20 @@
+profesor:
+    resource: "@ProfesorBundle/Controller/"
+    type:     annotation
+    prefix:   /profesor
+
+index:
+    resource: "@IndexBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+alumno:
+    resource: "@AlumnoBundle/Controller/"
+    type:     annotation
+    prefix:   /alumno
+
+empresa:
+    resource: "@EmpresaBundle/Controller/"
+    type:     annotation
+    prefix:   /empresa
+

@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+  <div align="center"><h1>LISTADO DE EMPRESAS</h1></div>
+  <div align="center">
+    <table>
+      <tr>
+        <th>NOMBRE</th>
+        <th>DIRECCION</th>
+        <th>CP</th>
+        <th>TELEFONO 1</th>
+        <th>TELEFONO 2</th>
+        <th>FECHA DE CREACION</th>
+      </tr>
+      
+      {% for empresa in empresas %}
+      <tr>
+        <td>{{ empresa.nombre }}</td>
+        <td>{{ empresa.direccion }}</td>
+        <td>{{ empresa.cp }}</td>
+        <td>{{ empresa.telefono1 }}</td>
+        <td>{{ empresa.telefono2 }}</td>
+        <td>{{ empresa.fechaCreacion|date("d/m/Y") }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

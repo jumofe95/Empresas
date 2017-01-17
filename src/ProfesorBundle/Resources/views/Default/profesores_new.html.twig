@@ -1,0 +1,8 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2>Nuevo profesor.</h2>
+<!-- (form) es el array que hemos devuelto en la funcion "newAction()" del controlador ProfesorController-->
+	{{form(form)}}
+
+{% endblock %}
