@@ -1,3 +1,13 @@
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+usuario:
+    resource: "@UsuarioBundle/Controller/"
+    type:     annotation
+    prefix:   /usuario
+
 profesor:
     resource: "@ProfesorBundle/Controller/"
     type:     annotation
@@ -17,4 +27,3 @@ empresa:
     resource: "@EmpresaBundle/Controller/"
     type:     annotation
     prefix:   /empresa
-

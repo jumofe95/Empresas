@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new AlumnoBundle\AlumnoBundle(),
             new IndexBundle\IndexBundle(),
             new ProfesorBundle\ProfesorBundle(),
+            new UsuarioBundle\UsuarioBundle(),
+            new AdminBundle\AdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

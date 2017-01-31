@@ -1,7 +1,8 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
-
+    encoders:
+        UsuarioBundle\Entity\Usuario: bcrypt
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
@@ -12,6 +13,10 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        admin:
+            anonymous: ~
+            pattern: ^/admin
 
         main:
             anonymous: ~
