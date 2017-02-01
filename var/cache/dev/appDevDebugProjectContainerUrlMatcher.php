@@ -129,6 +129,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'UsuarioBundle\\Controller\\DefaultController::registerAction',  '_route' => 'user_registration',);
             }
 
+            if (0 === strpos($pathinfo, '/usuario/usuarios')) {
+                // usuarios
+                if ($pathinfo === '/usuario/usuarios') {
+                    return array (  '_controller' => 'UsuarioBundle\\Controller\\DefaultController::usuariosAction',  '_route' => 'usuarios',);
+                }
+
+                // login
+                if ($pathinfo === '/usuario/usuarios/login') {
+                    return array (  '_controller' => 'UsuarioBundle\\Controller\\DefaultController::loginAction',  '_route' => 'login',);
+                }
+
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/profesor')) {
@@ -200,6 +213,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_empresa_empresa_get:
 
+        }
+
+        // logout
+        if ($pathinfo === '/usuario/usuarios/logout') {
+            return array('_route' => 'logout');
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
