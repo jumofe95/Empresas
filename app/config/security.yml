@@ -8,14 +8,12 @@ security:
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
-            memory:
-              users:
-                admin:
-                  password: 1234
-                  roles: 'ROLE_ADMIN'
-                julian:
-                  password: julian
-                  roles: 'ROLE_ADMIN'
+            memory: ~
+        my_db_provider:
+            entity:
+                class: UsuarioBundle:Usuario
+                property: username
+
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -28,9 +26,9 @@ security:
             http_basic: ~
 
         usuarios:
-            pattern: ^/usuario/usuarios
+            pattern: ^/ #tendra acceso desde la home#
             anonymous: ~
-            provider: in_memory
+            provider: my_db_provider
             form_login:
                 login_path: /usuario/usuarios/login
                 check_path: /usuario/usuarios/login
@@ -48,7 +46,3 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-
-    access_control:
-            - { path: ^/usuario/usuarios/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-            - { path: ^/usuario/usuarios, roles: ROLE_ADMIN }

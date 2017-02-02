@@ -34,6 +34,7 @@ class EmpresaController extends Controller
      */
     public function newAction(Request $request)
     {
+			$this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puedes acceder si no eres admin!');
 
 	    $empresa = new Empresa();
 	    $form = $this->createForm(EmpresaType::class, $empresa);

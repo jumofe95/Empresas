@@ -1,5 +1,9 @@
-<body>
-usuarios.html
+{% extends '::base.html.twig' %}
+
+{% block body %} 
+<h1>¡Hola {{my_user}} !</h1>
 <br>
 <a href="/usuario/usuarios/logout">Salir</a>
-</body>
+
+
+{% endblock %}

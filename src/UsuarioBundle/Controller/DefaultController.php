@@ -64,7 +64,32 @@ class DefaultController extends Controller
    */
   public function usuariosAction()
   {
-      return $this->render('UsuarioBundle:Default:usuarios.html.twig');
+    //$auth_checker = $this->get('security.authorization_checker');
+
+    $user = $this->get('security.token_storage')->getToken()->getUser();
+
+    //$isRoleAnonimous = $auth_checker->isGranted('IS_AUTHENTICATED_ANONYMOUSLY');
+
+    /*if ($isRoleAnonimous) {
+      return $this->render('UsuarioBundle:Default:usuarios.html.twig', array('my_user' => "Anonimo"));
+    }else {
+    }*/
+
+    /*
+    $isRoleAdmin = $auth_checker->isGranted('ROLE_ADMIN');
+    $isRoleUser = $auth_checker->isGranted('ROLE_USER');
+
+    if($isRoleAdmin){
+      return new Response("role admin");
+    }else if($isRoleUser){
+      return new Response("role user");
+    }else if($isRoleAnonimous){
+      return new Response("anonimous");
+    }*/
+
+    //$user->getUsername();
+
+    return $this->render('UsuarioBundle:Default:usuarios.html.twig', array('my_user' => $user->getUsername()));
   }
 
 

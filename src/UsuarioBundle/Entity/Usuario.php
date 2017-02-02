@@ -28,6 +28,13 @@ class Usuario implements UserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @Assert\Length(
+     *  min = 4,
+     *  max = 16,
+     *  minMessage = "Minimo {{ limit }} caracteres",
+     *  maxMessage = "Maximo {{ limit }} caracteres"
+     * )
+
      */
     private $username;
 
@@ -45,8 +52,30 @@ class Usuario implements UserInterface
      */
     private $password;
 
-
     private $plainPassword;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="roles", type="json_array")
+     */
+    private $roles = array();
+
+
+    /**
+     * Set roles
+     *
+     * @param string $roles
+     *
+     * @return Usuario
+     */
+     public function setRoles(array $roles)
+     {
+         $this->roles = $roles;
+         // allows for chaining
+         return $this;
+     }
+
 
     public function getPlainPassword()
     {
@@ -57,9 +86,6 @@ class Usuario implements UserInterface
     {
         $this->plainPassword = $password;
     }
-
-
-
 
     /**
      * Get id
@@ -144,7 +170,7 @@ class Usuario implements UserInterface
     }
 
 
-    //METODOS QUE IMPLEENTA USERINTERFACE
+    //METODOS QUE IMPLEMENTA USERINTERFACE
     public function getSalt()
     {
         // The bcrypt algorithm doesn't require a separate salt.
@@ -154,9 +180,10 @@ class Usuario implements UserInterface
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return $this -> roles;
     }
 
     public function eraseCredentials() {}
+
 
 }
