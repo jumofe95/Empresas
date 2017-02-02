@@ -29,6 +29,7 @@ class UsuarioType extends AbstractType
             'first_options'  => array('label' => 'Contraseña'),
             'second_options' => array('label' => 'Repite la contraseña'),
         ))
+
         ->add('Borrar', ResetType::class);
 
     }

@@ -21,6 +21,7 @@
       <parameter key="ProfesorBundle">ProfesorBundle\ProfesorBundle</parameter>
       <parameter key="UsuarioBundle">UsuarioBundle\UsuarioBundle</parameter>
       <parameter key="AdminBundle">AdminBundle\AdminBundle</parameter>
+      <parameter key="ConfigBundle">ConfigBundle\ConfigBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -91,6 +92,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">C:\xampp\symfony\Empresas\src\AdminBundle</parameter>
         <parameter key="namespace">AdminBundle</parameter>
+      </parameter>
+      <parameter key="ConfigBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">C:\xampp\symfony\Empresas\src\ConfigBundle</parameter>
+        <parameter key="namespace">ConfigBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -526,7 +532,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>qsz+c7oPel</argument>
                 <argument>0</argument>
-                <argument>sfgS8X-AKgsSGdnlp+dgyh</argument>
+                <argument>QnLfkfjhnmgC84FmR0PvpO</argument>
                 <argument>C:\xampp\symfony\Empresas\var\cache\dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -694,7 +700,7 @@
           <tag name="monolog.logger" channel="cache"/>
           <argument>MBJ8a8ajKu</argument>
           <argument>null</argument>
-          <argument>sfgS8X-AKgsSGdnlp+dgyh</argument>
+          <argument>QnLfkfjhnmgC84FmR0PvpO</argument>
           <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
           <factory class="Symfony\Component\PropertyAccess\PropertyAccessor" method="createCache"/>
         </service>
@@ -715,7 +721,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>0XSuzwD1dk</argument>
       <argument>0</argument>
-      <argument>sfgS8X-AKgsSGdnlp+dgyh</argument>
+      <argument>QnLfkfjhnmgC84FmR0PvpO</argument>
       <argument>C:\xampp\symfony\Empresas\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -725,7 +731,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>GFv7Z5iWQ4</argument>
       <argument>0</argument>
-      <argument>sfgS8X-AKgsSGdnlp+dgyh</argument>
+      <argument>QnLfkfjhnmgC84FmR0PvpO</argument>
       <argument>C:\xampp\symfony\Empresas\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1718,17 +1724,6 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
-            <argument type="service" id="security.user.provider.concrete.in_memory"/>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Core\User\UserChecker" public="false"/>
-            </argument>
-            <argument>admin</argument>
-            <argument type="service" id="security.encoder_factory"/>
-            <argument>true</argument>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
             <argument type="service" id="security.user.provider.concrete.my_db_provider"/>
             <argument type="service">
               <service class="Symfony\Component\Security\Core\User\UserChecker" public="false"/>
@@ -1740,12 +1735,12 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>589275f0574af6.94950910</argument>
+            <argument>5893190d8bdd53.72096836</argument>
           </service>
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>589275f0574af6.94950910</argument>
+            <argument>5893190d8bdd53.72096836</argument>
           </service>
         </argument>
       </argument>
@@ -1775,11 +1770,6 @@
         <argument key="security.firewall.map.context.dev" type="service">
           <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
             <argument>^/(_(profiler|wdt)|css|images|js)/</argument>
-          </service>
-        </argument>
-        <argument key="security.firewall.map.context.admin" type="service">
-          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-            <argument>^/admin</argument>
           </service>
         </argument>
         <argument key="security.firewall.map.context.usuarios" type="service">
@@ -1906,72 +1896,6 @@
         </service>
       </argument>
     </service>
-    <service id="security.firewall.map.context.admin" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
-      <argument type="collection">
-        <argument type="service" id="security.channel_listener"/>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
-            <argument type="service" id="security.token_storage"/>
-            <argument type="collection">
-              <argument type="service" id="security.user.provider.concrete.in_memory"/>
-              <argument type="service" id="security.user.provider.concrete.my_db_provider"/>
-            </argument>
-            <argument>admin</argument>
-            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-            <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
-            <argument type="service" id="security.authentication.trust_resolver"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener" public="false">
-            <argument type="service" id="security.token_storage"/>
-            <argument type="service" id="security.authentication.manager"/>
-            <argument>admin</argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\EntryPoint\BasicAuthenticationEntryPoint" public="false">
-                <argument>Secured Area</argument>
-              </service>
-            </argument>
-            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-          </service>
-        </argument>
-        <argument type="service" id="security.access_listener"/>
-      </argument>
-      <argument type="service">
-        <service class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
-          <argument type="service" id="security.token_storage"/>
-          <argument type="service" id="security.authentication.trust_resolver"/>
-          <argument type="service" id="security.http_utils"/>
-          <argument>admin</argument>
-          <argument type="service">
-            <service class="Symfony\Component\Security\Http\EntryPoint\BasicAuthenticationEntryPoint" public="false">
-              <argument>Secured Area</argument>
-            </service>
-          </argument>
-          <argument>null</argument>
-          <argument>null</argument>
-          <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-          <argument>false</argument>
-        </service>
-      </argument>
-      <argument type="service">
-        <service class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
-          <argument>admin</argument>
-          <argument>security.user_checker</argument>
-          <argument>security.request_matcher.764e993b07f86c50f945d9bc29906d594dfc5b599c6dd619ee7f826206d068a50daecf5e</argument>
-          <argument>true</argument>
-          <argument>false</argument>
-          <argument>security.user.provider.concrete.in_memory</argument>
-          <argument>admin</argument>
-          <argument>security.authentication.basic_entry_point.admin</argument>
-          <argument>null</argument>
-          <argument>null</argument>
-          <argument type="collection">
-            <argument>http_basic</argument>
-          </argument>
-        </service>
-      </argument>
-    </service>
     <service id="security.firewall.map.context.usuarios" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
       <argument type="collection">
         <argument type="service" id="security.channel_listener"/>
@@ -2029,8 +1953,8 @@
                 <call method="setOptions">
                   <argument type="collection">
                     <argument key="login_path">/usuario/usuarios/login</argument>
+                    <argument key="default_target_path">/usuario/usuarios</argument>
                     <argument key="always_use_default_target_path">false</argument>
-                    <argument key="default_target_path">/</argument>
                     <argument key="target_path_parameter">_target_path</argument>
                     <argument key="use_referer">false</argument>
                   </argument>
@@ -2074,7 +1998,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>589275f0574af6.94950910</argument>
+            <argument>5893190d8bdd53.72096836</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2140,7 +2064,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>589275f0574af6.94950910</argument>
+            <argument>5893190d8bdd53.72096836</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2578,6 +2502,7 @@
               <argument key="AlumnoBundle">AlumnoBundle\Entity</argument>
               <argument key="ProfesorBundle">ProfesorBundle\Entity</argument>
               <argument key="UsuarioBundle">UsuarioBundle\Entity</argument>
+              <argument key="ConfigBundle">ConfigBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -2601,6 +2526,7 @@
                         <argument>C:\xampp\symfony\Empresas\src\AlumnoBundle\Entity</argument>
                         <argument>C:\xampp\symfony\Empresas\src\ProfesorBundle\Entity</argument>
                         <argument>C:\xampp\symfony\Empresas\src\UsuarioBundle\Entity</argument>
+                        <argument>C:\xampp\symfony\Empresas\src\ConfigBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2615,6 +2541,7 @@
                         <argument>C:\xampp\symfony\Empresas\src\AlumnoBundle\Entity</argument>
                         <argument>C:\xampp\symfony\Empresas\src\ProfesorBundle\Entity</argument>
                         <argument>C:\xampp\symfony\Empresas\src\UsuarioBundle\Entity</argument>
+                        <argument>C:\xampp\symfony\Empresas\src\ConfigBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2629,6 +2556,7 @@
                         <argument>C:\xampp\symfony\Empresas\src\AlumnoBundle\Entity</argument>
                         <argument>C:\xampp\symfony\Empresas\src\ProfesorBundle\Entity</argument>
                         <argument>C:\xampp\symfony\Empresas\src\UsuarioBundle\Entity</argument>
+                        <argument>C:\xampp\symfony\Empresas\src\ConfigBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2643,10 +2571,26 @@
                         <argument>C:\xampp\symfony\Empresas\src\AlumnoBundle\Entity</argument>
                         <argument>C:\xampp\symfony\Empresas\src\ProfesorBundle\Entity</argument>
                         <argument>C:\xampp\symfony\Empresas\src\UsuarioBundle\Entity</argument>
+                        <argument>C:\xampp\symfony\Empresas\src\ConfigBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
                   <argument>UsuarioBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>C:\xampp\symfony\Empresas\src\EmpresaBundle\Entity</argument>
+                        <argument>C:\xampp\symfony\Empresas\src\AlumnoBundle\Entity</argument>
+                        <argument>C:\xampp\symfony\Empresas\src\ProfesorBundle\Entity</argument>
+                        <argument>C:\xampp\symfony\Empresas\src\UsuarioBundle\Entity</argument>
+                        <argument>C:\xampp\symfony\Empresas\src\ConfigBundle\Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>ConfigBundle\Entity</argument>
                 </call>
               </service>
             </argument>
@@ -3215,6 +3159,10 @@
       <call method="addPath">
         <argument>C:\xampp\symfony\Empresas\src\AdminBundle/Resources/views</argument>
         <argument>Admin</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\symfony\Empresas\src\ConfigBundle/Resources/views</argument>
+        <argument>Config</argument>
       </call>
       <call method="addPath">
         <argument>C:\xampp\symfony\Empresas\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>

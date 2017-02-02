@@ -1,3 +1,8 @@
+config:
+    resource: "@ConfigBundle/Controller/"
+    type:     annotation
+    prefix:   /config
+
 admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation

@@ -34,7 +34,6 @@ class Usuario implements UserInterface
      *  minMessage = "Minimo {{ limit }} caracteres",
      *  maxMessage = "Maximo {{ limit }} caracteres"
      * )
-
      */
     private $username;
 
@@ -51,6 +50,7 @@ class Usuario implements UserInterface
      * @ORM\Column(name="password", type="string", length=64)
      */
     private $password;
+
 
     private $plainPassword;
 

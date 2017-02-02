@@ -32,7 +32,7 @@ class ProfesorController extends Controller
 	    $repository = $this->getDoctrine()->getRepository('ProfesorBundle:Profesor');
 	    // find *all* Alumnos
 	    $profesores = $repository->findAll();
-      
+
       // devuelve un array de profesores
 	     return $this->render('ProfesorBundle:Default:profesores_all.html.twig', array("profesores"=>$profesores));
     }
@@ -44,6 +44,8 @@ class ProfesorController extends Controller
      */
     public function newAction(Request $request)
     {
+			$this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puedes acceder si no eres admin!');
+
       //se crea una variable de tipo Profesor, que la enlaza con ProfesorType (que será el php creado para "pintar" la interfaz del formulario)
 	    $profesor = new Profesor();
 	    $form = $this->createForm(ProfesorType::class, $profesor);

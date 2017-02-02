@@ -12,6 +12,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+      $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puedes acceder si no eres admin!');
+
         return $this->render('AdminBundle:Default:index.html.twig');
     }
 }

@@ -21,10 +21,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        admin:
-            pattern: ^/admin
-            http_basic: ~
-
         usuarios:
             pattern: ^/ #tendra acceso desde la home#
             anonymous: ~
@@ -32,10 +28,10 @@ security:
             form_login:
                 login_path: /usuario/usuarios/login
                 check_path: /usuario/usuarios/login
+                default_target_path: /usuario/usuarios
             logout:
                 path:   /usuario/usuarios/logout
                 target: /usuario/usuarios
-
 
         main:
             anonymous: ~

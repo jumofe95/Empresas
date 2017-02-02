@@ -1,9 +1,23 @@
 {% extends '::base.html.twig' %}
 
-{% block body %} 
-<h1>¡Hola {{my_user}} !</h1>
+{% block body %}
+
+<h1>¡Hola
+
+{% if app.user != null %}{{ app.user.username }}!</h1>
+
+{% if is_granted('ROLE_ADMIN') %} <h2>¡Eres admin!</h2> {% endif %}
 <br>
 <a href="/usuario/usuarios/logout">Salir</a>
+
+
+{% else %} Anónimo !</h1>
+<br>
+<a href="/usuario/usuarios/login">Entrar</a> &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="/usuario/register">Registrarse</a>
+
+{% endif %}
+
 
 
 {% endblock %}

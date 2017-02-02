@@ -105,6 +105,28 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        if (0 === strpos($pathinfo, '/config')) {
+            // config_default_index
+            if (rtrim($pathinfo, '/') === '/config') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'config_default_index');
+                }
+
+                return array (  '_controller' => 'ConfigBundle\\Controller\\DefaultController::indexAction',  '_route' => 'config_default_index',);
+            }
+
+            // all_config
+            if ($pathinfo === '/config/all') {
+                return array (  '_controller' => 'ConfigBundle\\Controller\\DefaultController::allAction',  '_route' => 'all_config',);
+            }
+
+            // config_default_new
+            if ($pathinfo === '/config/new') {
+                return array (  '_controller' => 'ConfigBundle\\Controller\\DefaultController::newAction',  '_route' => 'config_default_new',);
+            }
+
+        }
+
         // admin_default_index
         if (rtrim($pathinfo, '/') === '/admin') {
             if (substr($pathinfo, -1) !== '/') {
